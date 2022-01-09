@@ -16,53 +16,53 @@
 ### Association
 
 - has_many :items
-- has_many :purchase_records
+- has_many :orders
 
 ## items テーブル
 
-| Column            | Type        | Options                        |
-| ----------------- | ----------- | ------------------------------ |
-| item_name         | string      | null: false                    |
-| item_description  | text        | null: false                    |
-| category          | integer     | null: false                    |
-| condition         | integer     | null: false                    |
-| shipping_charges  | integer     | null: false                    |
-| shipping_area     | integer     | null: false                    |
-| ship_date         | integer     | null: false                    |
-| price             | integer     | null: false                    |
-| user              | references  | null: false, foreign_key: true |
+| Column              | Type        | Options                        |
+| ------------------- | ----------- | ------------------------------ |
+| item_name           | string      | null: false                    |
+| item_description    | text        | null: false                    |
+| category_id         | integer     | null: false                    |
+| condition_id        | integer     | null: false                    |
+| shipping_charges_id | integer     | null: false                    |
+| prefecture_id       | integer     | null: false                    |
+| ship_date_id        | integer     | null: false                    |
+| price               | integer     | null: false                    |
+| user                | references  | null: false, foreign_key: true |
  imageはActivestorageで実装するため含まず
 
 ### Association
 
-- has_one :purchase_records
-- belongs_to :users
+- has_one :order
+- belongs_to :user
 
-## purchase_records テーブル
+## orders テーブル
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
-| price  | integer    | null: false                    |
 | user   | references | null: false, foreign_key: true |
 | item   | references | null: false, foreign_key: true |
 
 ### Association
 
-- has_one :shopping_addresses
-- belongs_to :users
-- belongs_to :items
+- has_one :shopping_address
+- belongs_to :user
+- belongs_to :item
 
 ## shopping_addresses テーブル
 
-| Column       | Type     | Options     |
-| ------------ | -------- | ----------- |
-| postcode     | string   | null: false |
-| prefecture   | string   | null: false |
-| city         | string   | null: false |
-| block        | string   | null: false |
-| building     | string   |             |
-| phone_number | string   | null: false |
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| postcode      | string     | null: false                    |
+| prefecture_id | integer    | null: false                    |
+| city          | string     | null: false                    |
+| block         | string     | null: false                    |
+| building      | string     |                                |
+| phone_number  | string     | null: false                    |
+| order         | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :purchase_records
+- belongs_to :order

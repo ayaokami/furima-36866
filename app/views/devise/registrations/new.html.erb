@@ -1,5 +1,7 @@
 <%= render "shared/second-header"%>
 
+<%# 課題の注意事項に、機能を実装できた時点で削除すること、とあるが、自分が修正した部分がわかるように残しておきたいです。機能実装した場合は「済」と表現します。%>
+
 <%# 済「モデル名」にはUserモデルであれば@userを渡しましょう。「新規登録機能へのパス」は、devise導入後にrails routesを実行してdevise/registrations#createへのパスを確認し、記載してください。 %>
 <%= form_with model: @user, url:  user_registration_path, class: 'registration-main', local: true do |f| %>
 <%# //「モデル名」にはUserモデルであれば@userを渡しましょう。「新規登録機能へのパス」は、devise導入後にrails routesを実行してdevise/registrations#createへのパスを確認し、記載してください。 %>

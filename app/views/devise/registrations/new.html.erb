@@ -1,10 +1,8 @@
 <%= render "shared/second-header"%>
 
-<%# 課題の注意事項に、機能を実装できた時点で削除すること、とあるが、自分が修正した部分がわかるように残しておきたいです。機能実装した場合は「済」と表現します。%>
-
-<%# 済「モデル名」にはUserモデルであれば@userを渡しましょう。「新規登録機能へのパス」は、devise導入後にrails routesを実行してdevise/registrations#createへのパスを確認し、記載してください。 %>
+<%# 【ユーザー管理機能の新規登録機能へのパス実装】 フォームには、モデル名（Userモデルであれば@user）とパス(url)が必須  %>
 <%= form_with model: @user, url:  user_registration_path, class: 'registration-main', local: true do |f| %>
-<%# //「モデル名」にはUserモデルであれば@userを渡しましょう。「新規登録機能へのパス」は、devise導入後にrails routesを実行してdevise/registrations#createへのパスを確認し、記載してください。 %>
+
 <div class='form-wrap'>
   <div class='form-header'>
     <h1 class='form-header-text'>
@@ -12,9 +10,8 @@
     </h1>
   </div>
 
-  <%# 済 インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
+  <%# 以下：インスタンスを渡して、エラー発生時にメッセージを表示する%>
   <%= render 'shared/error_messages', model: f.object %>
-  <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
 
   <div class="form-group">
     <div class='form-text-wrap'>

@@ -22,6 +22,6 @@ class Item < ApplicationRecord
 
   #金額は、¥300~¥9,999,999の半角数値のみ保存可能であることをバリデーション
   with_options presence: true, format: { with: /\A[0-9]+\z/, message: 'には半角数字を使用してください' } do
-    validates :price, numericality:{only_integer: true, greater_than_or_equal_to:300, less_than_or_equal_to:9999999, message: 'は300〜9999999の間で金額を入力してください'}
+    validates :price, numericality:{only_integer: true, greater_than_or_equal_to:300, less_than_or_equal_to:9999999, message: 'は300〜9999999の間で半角数字を入力してください'}
   end
 end

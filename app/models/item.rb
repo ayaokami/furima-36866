@@ -21,9 +21,7 @@ class Item < ApplicationRecord
   validates :ship_date_id, numericality: { other_than: 1, message: "can't be blank" }
 
   # 金額は、¥300~¥9,999,999の半角数値のみ保存可能であることをバリデーション
-  with_options presence: true, format: { with: /\A[0-9]+\z/, message: 'には半角数字を使用してください' } do
-    validates :price,
-              numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999,
+  validates :price, presence: true,
+            numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999,
                               message: 'は300〜9999999の間で半角数字を入力してください' }
-  end
 end

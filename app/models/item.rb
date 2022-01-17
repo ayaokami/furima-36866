@@ -10,15 +10,19 @@ class Item < ApplicationRecord
   belongs_to :ship_date
   belongs_to :shipping_charges
 
-  validates :image,            presence: true
-  validates :item_name,        presence: true
-  validates :item_description, presence: true
+  with_options presence: true do
+    validates :image
+    validates :item_name
+    validates :item_description
+  end
   # 以下：アクティブハッシュのバリデーション（{ id: 1, name: '--' }以外のときに保存できる）
-  validates :category_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :condition_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :shipping_charges_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :ship_date_id, numericality: { other_than: 1, message: "can't be blank" }
+  with_options presence: true, numericality: { other_than: 1, message: "can't be blank" } do
+    validates :category_id
+    validates :condition_id
+    validates :shipping_charges_id
+    validates :prefecture_id
+    validates :ship_date_id
+  end
 
   # 金額は、¥300~¥9,999,999の半角数値のみ保存可能であることをバリデーション
   validates :price, presence: true,

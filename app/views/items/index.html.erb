@@ -133,7 +133,8 @@
       <%# 商品の中身を取り出すeach~do記述は<li>の上に記述する、下に記述すると取り出す要素それぞれがリストとして扱われない %>
       <% @items.each do |item| %>
       <li class='list'>
-        <%= link_to "#" do %>
+        <%#= link_to "/items/#{item.id}" do パスの書き方は下記でもこれでも同義になる。ただし"/items/:id"では× idの受け渡しできない%>
+        <%= link_to item_path(item.id) do %>
         <div class='item-img-content'>
           <%= image_tag item.image, class: "item-img" %>
 
@@ -159,7 +160,6 @@
         <% end %>
       <% end %>
       </li>
-      <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
 
     <%# itemsテーブルに商品がない場合は以下のダミー商品を表示する %>
     <% else %>

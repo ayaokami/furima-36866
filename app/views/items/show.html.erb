@@ -23,7 +23,7 @@
       </span>
     </div>
 
-    <%# ログインユーザーと出品しているユーザーが同一人物の場合と、同一人物でない場合、ログオフユーザーでの条件分岐%>
+    <%# 商品購入機能実装後には、商品が売れた後、「商品の編集」「削除」ボタンは表示されないように追加実装する必要あり%>
     <% if user_signed_in? && current_user.id == @item.user_id%>
       <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
       <p class="or-text">or</p>
@@ -101,7 +101,7 @@
       後ろの商品 ＞
     </a>
   </div>
-  <%# 商品のカテゴリー名をクリックしてもリンク先は#で遷移しない %>
+
   <a href="#" class="another-item"><%= @item.category.name %>をもっと見る</a>
 </div>
 

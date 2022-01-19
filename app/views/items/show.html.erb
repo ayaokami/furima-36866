@@ -25,7 +25,7 @@
 
     <%# 商品購入機能実装後には、商品が売れた後、「商品の編集」「削除」ボタンは表示されないように追加実装する必要あり%>
     <% if user_signed_in? && current_user.id == @item.user_id%>
-      <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
+      <%= link_to "商品の編集", edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
       <p class="or-text">or</p>
       <%= link_to "削除", item_path(@item.id), method: :delete, class:"item-destroy" %>
     <% elsif user_signed_in? %>

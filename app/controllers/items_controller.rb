@@ -31,10 +31,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    # ログイン状態の場合でも、自身が出品した売却済み商品の商品情報編集ページへ遷移しようとすると、トップページに遷移すること。は商品購入機能実装後に行う。
     @item = Item.find(params[:id])
-    unless current_user.id == @item.user_id
-      redirect_to root_path
-    end
+    redirect_to root_path unless current_user.id == @item.user_id
   end
 
   def update

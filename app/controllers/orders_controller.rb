@@ -5,7 +5,6 @@ class OrdersController < ApplicationController
   end
   
   def create
-    binding.pry
     @order = Order.create(order_params)
     ShoppingAddress.create(shopping_addresses_params)
     redirect_to root_path
@@ -13,10 +12,10 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).merge(user_id: current_user.id, item_id: @item.id)
+    params.permit(:item_id).merge(user_id: current_user.id)
   end
 
   def shopping_addresses_params
-    parame.require(:shopping_address).permit(:postcode, :prefecture_id, :city, :block, :building, :phone_number).merge(order_id: @order.id)
+    params.permit(:postcode, :prefecture_id, :city, :block, :building, :phone_number).merge(order_id: @order.id)
   end
 end

@@ -5,11 +5,18 @@ class OrdersController < ApplicationController
   end
   
   def create
-    Order.create(order_params)
+    binding.pry
+    @order = Order.create(order_params)
+    ShoppingAddress.create(shopping_addresses_params)
+    redirect_to root_path
   end
 
   private
   def order_params
-    parame.rewuire(:order).permit(:postcode, :prefecture_id, :city, :block, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id])
+    params.require(:order).merge(user_id: current_user.id, item_id: @item_id)
+  end
+
+  def shopping_addresses_params
+    parame.rewuire(:shopping_address).permit(:postcode, :prefecture_id, :city, :block, :building, :phone_number).merge(order_id: @order.id)
   end
 end

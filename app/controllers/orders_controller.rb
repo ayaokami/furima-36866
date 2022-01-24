@@ -13,10 +13,10 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).merge(user_id: current_user.id, item_id: @item_id)
+    params.require(:order).merge(user_id: current_user.id, item_id: @item.id)
   end
 
   def shopping_addresses_params
-    parame.rewuire(:shopping_address).permit(:postcode, :prefecture_id, :city, :block, :building, :phone_number).merge(order_id: @order.id)
+    parame.require(:shopping_address).permit(:postcode, :prefecture_id, :city, :block, :building, :phone_number).merge(order_id: @order.id)
   end
 end

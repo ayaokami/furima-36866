@@ -5,17 +5,17 @@ class OrdersController < ApplicationController
   end
   
   def create
-    @order = Order.create(order_params)
-    ShoppingAddress.create(shopping_addresses_params)
-    redirect_to root_path
+    @order_shopping_address = OrderShoppingAddress.new(order_params)
+    if @order_shopping_address.valid?
+      @order_shopping_address.save
+      redirect_to root_path
+    else
+      render :index
+    end
   end
 
   private
   def order_params
-    params.permit(:item_id).merge(user_id: current_user.id)
-  end
-
-  def shopping_addresses_params
-    params.permit(:postcode, :prefecture_id, :city, :block, :building, :phone_number).merge(order_id: @order.id)
+    params.require(:order_shopping_address).permit(:item_id, :postcode, :prefecture_id, :city, :block, :building, :phone_number).merge(user_id: current_user.id)
   end
 end

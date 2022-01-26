@@ -7,7 +7,7 @@ class OrderShoppingAddress
     validates :prefecture_id,  numericality: {other_than: 1, message: "都道府県を選んでください"}
     validates :city
     validates :block
-    validates :phone_number,  format: {with: /\A[0-9]{10,11}\z/, message: "ハイフン(-)なし、半角数字で電話番号を入力してください"}
+    validates :phone_number,  format: {with: /\A[0-9]{10,11}\z/, message: "ハイフン(-)なし、10桁以上11桁以内の半角数字で電話番号を入力してください"}
     validates :item_id
     validates :user_id
   end

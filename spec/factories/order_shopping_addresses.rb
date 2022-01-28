@@ -5,5 +5,6 @@ FactoryBot.define do
     city     { '瑞穂市' }
     block    { '馬場上光町3-90-1' }
     phone_number { '08008080808' }
+    token {"tok_abcdefghijk00000000000000000"}
   end
 end

@@ -24,15 +24,15 @@
       </span>
     </div>
 
-    <%# 商品購入機能実装後には、商品が売れた後、「商品の編集」「削除」ボタンは表示されないように追加実装する必要あり%>
-    <% if user_signed_in? && current_user.id == @item.user_id%>
-      <%= link_to "商品の編集", edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
-      <p class="or-text">or</p>
-      <%= link_to "削除", item_path(@item.id), method: :delete, class:"item-destroy" %>
-    <% elsif user_signed_in? %>
-      <%# 商品が売れていない場合はこちらを表示しましょう 商品購入機能実装後にif文で分岐する%>
-      <%= link_to "購入画面に進む", item_orders_path(@item.id)  ,class:"item-red-btn"%>
-      <%# //商品が売れていない場合はこちらを表示しましょう %>
+    <%# ①ログインしており、商品が存在し、出品者の場合と②そうでない場合、③非ログインの閲覧者の場合 %>
+    <% if user_signed_in? && @item.order.blank? %>
+      <% if current_user.id == @item.user_id %>
+        <%= link_to "商品の編集", edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
+        <p class="or-text">or</p>
+        <%= link_to "削除", item_path(@item.id), method: :delete, class:"item-destroy" %>
+      <% else %>
+        <%= link_to "購入画面に進む", item_orders_path(@item.id)  ,class:"item-red-btn"%>
+      <% end %>
     <% else %>
     <% end %>
 

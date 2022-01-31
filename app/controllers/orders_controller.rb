@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item_id, only: [:index, :create]
+  before_action :no_transition, only: [:index,:create]
 
   def index
     @order_shopping_address = OrderShoppingAddress.new
@@ -32,5 +34,12 @@ class OrdersController < ApplicationController
 
   def set_item_id
     @item = Item.find(params[:item_id])
+  end
+
+  #ログインした出品者は自分の出した商品の購入ページに移動しようとするとトップページへ移動する/売却済みの商品購入ページに遷移するとトップページへ戻る
+  def no_transition
+    if @item.user_id == current_user.id || @item.order.present?
+      redirect_to root_path
+    end
   end
 end

@@ -8,5 +8,5 @@ window.addEventListener('load', () => {
     profit.innerHTML = Math.floor(inputValue - addTaxDom.innerHTML);
     // Number()、parseInt()、parseFloat()は、金額を消して空文字になるとNaN表記となるため、空文字で0表記となるMath.floor()を使用
     // const inputValue = priceInput.value;で数値として変換されているので、Math.floor()使用可能
-  })
+  });
 });

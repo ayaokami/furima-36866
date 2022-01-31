@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
-  belongs_to :user
+  belongs_to       :user
   has_one_attached :image
+  has_one          :order
 
   # 以下：アクティブハッシュのアソシエーション
   extend ActiveHash::Associations::ActiveRecordExtensions

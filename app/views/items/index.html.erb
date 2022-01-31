@@ -138,11 +138,12 @@
         <div class='item-img-content'>
           <%= image_tag item.image, class: "item-img" %>
 
-          <%# 商品が売れていればsold outを表示しましょう 商品購入機能実装後にif文で分岐する 今は全てに表示される/コメントアウトで非表示中 %>
-          <%#div class='sold-out'>
+          <%# @itemsからitemを取り出すeach文の中にあるのでitem.orderとする %>
+          <% if item.order.present? %>
+          <div class='sold-out' >
             <span>Sold Out!!</span>
           </div>
-          <%# //商品が売れていればsold outを表示しましょう %>
+          <% end %>
 
         </div>
         <div class='item-info'>

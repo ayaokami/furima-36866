@@ -5,9 +5,9 @@ RSpec.describe OrderShoppingAddress, type: :model do
     before do
       user = FactoryBot.create(:user)
       item = FactoryBot.create(:item)
-      @order_shopping_address = FactoryBot.build(:order_shopping_address, user_id: user.id, item_id: item.id )
-      #order_shopping_addressはモデルでなくクラスなのでfactories/order_shopping_address.rb内でアソシエーションが組めない。
-      #そのため、ここでuserとitemを生成し、上記紐付けを行う
+      @order_shopping_address = FactoryBot.build(:order_shopping_address, user_id: user.id, item_id: item.id)
+      # order_shopping_addressはモデルでなくクラスなのでfactories/order_shopping_address.rb内でアソシエーションが組めない。
+      # そのため、ここでuserとitemを生成し、上記紐付けを行う
       sleep 0.1
     end
 
@@ -22,8 +22,8 @@ RSpec.describe OrderShoppingAddress, type: :model do
     end
 
     context '内容に問題がある場合' do
-      it "tokenが空では登録できないこと" do
-        @order_shopping_address.token = ""
+      it 'tokenが空では登録できないこと' do
+        @order_shopping_address.token = ''
         @order_shopping_address.valid?
         expect(@order_shopping_address.errors.full_messages).to include("Token can't be blank")
       end
@@ -35,12 +35,12 @@ RSpec.describe OrderShoppingAddress, type: :model do
       it 'postcodeが「3桁ハイフン4桁」の半角文字列でないと保存できないこと' do
         @order_shopping_address.postcode = '1234567'
         @order_shopping_address.valid?
-        expect(@order_shopping_address.errors.full_messages).to include("Postcode ハイフン(-)あり、半角数字で郵便番号を入力してください")
+        expect(@order_shopping_address.errors.full_messages).to include('Postcode ハイフン(-)あり、半角数字で郵便番号を入力してください')
       end
       it 'prefecture_idが1だと保存できないこと' do
         @order_shopping_address.prefecture_id = '1'
         @order_shopping_address.valid?
-        expect(@order_shopping_address.errors.full_messages).to include("Prefecture 都道府県を選んでください")
+        expect(@order_shopping_address.errors.full_messages).to include('Prefecture 都道府県を選んでください')
       end
       it 'cityが空だと保存できないこと' do
         @order_shopping_address.city = ''
@@ -60,12 +60,12 @@ RSpec.describe OrderShoppingAddress, type: :model do
       it 'phone_numberが10桁未満の半角数値では保存できないこと' do
         @order_shopping_address.phone_number = '111111111'
         @order_shopping_address.valid?
-        expect(@order_shopping_address.errors.full_messages).to include("Phone number ハイフン(-)なし、10桁以上11桁以内の半角数字で電話番号を入力してください")
+        expect(@order_shopping_address.errors.full_messages).to include('Phone number ハイフン(-)なし、10桁以上11桁以内の半角数字で電話番号を入力してください')
       end
       it 'phone_numberが11桁以上の半角数値では保存できないこと' do
         @order_shopping_address.phone_number = '222222222222'
         @order_shopping_address.valid?
-        expect(@order_shopping_address.errors.full_messages).to include("Phone number ハイフン(-)なし、10桁以上11桁以内の半角数字で電話番号を入力してください")
+        expect(@order_shopping_address.errors.full_messages).to include('Phone number ハイフン(-)なし、10桁以上11桁以内の半角数字で電話番号を入力してください')
       end
       it 'userが紐付いていないと保存できないこと' do
         @order_shopping_address.user_id = nil

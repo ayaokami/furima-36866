@@ -31,9 +31,8 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    # ログイン状態の場合でも、自身が出品した売却済み商品の商品情報編集ページへ遷移しようとすると、トップページに遷移する
-    redirect_to root_path if user_signed_in? && @item.order.present?
-    redirect_to root_path unless current_user.id == @item.user_id
+    # ①自身が出品した売却済み商品の商品情報編集ページへ遷移しようとする or ②出品者と異なるユーザーが遷移しようとすると、トップページに遷移する
+    redirect_to root_path if @item.order.present? || !(current_user.id == @item.user_id)
   end
 
   def update

@@ -25,12 +25,12 @@ RSpec.describe OrderShoppingAddress, type: :model do
       it 'tokenが空では登録できないこと' do
         @order_shopping_address.token = ''
         @order_shopping_address.valid?
-        expect(@order_shopping_address.errors.full_messages).to include("カード情報を入力してください")
+        expect(@order_shopping_address.errors.full_messages).to include('カード情報を入力してください')
       end
       it 'postcodeが空だと保存できないこと' do
         @order_shopping_address.postcode = ''
         @order_shopping_address.valid?
-        expect(@order_shopping_address.errors.full_messages).to include("郵便番号を入力してください")
+        expect(@order_shopping_address.errors.full_messages).to include('郵便番号を入力してください')
       end
       it 'postcodeが「3桁ハイフン4桁」の半角文字列でないと保存できないこと' do
         @order_shopping_address.postcode = '1234567'
@@ -45,17 +45,17 @@ RSpec.describe OrderShoppingAddress, type: :model do
       it 'cityが空だと保存できないこと' do
         @order_shopping_address.city = ''
         @order_shopping_address.valid?
-        expect(@order_shopping_address.errors.full_messages).to include("市区町村を入力してください")
+        expect(@order_shopping_address.errors.full_messages).to include('市区町村を入力してください')
       end
       it 'blockが空では保存できないこと' do
         @order_shopping_address.block = ''
         @order_shopping_address.valid?
-        expect(@order_shopping_address.errors.full_messages).to include("番地を入力してください")
+        expect(@order_shopping_address.errors.full_messages).to include('番地を入力してください')
       end
       it 'phone_numberが空では保存できないこと' do
         @order_shopping_address.phone_number = ''
         @order_shopping_address.valid?
-        expect(@order_shopping_address.errors.full_messages).to include("電話番号を入力してください")
+        expect(@order_shopping_address.errors.full_messages).to include('電話番号を入力してください')
       end
       it 'phone_numberが10桁未満の半角数値では保存できないこと' do
         @order_shopping_address.phone_number = '111111111'
@@ -75,12 +75,12 @@ RSpec.describe OrderShoppingAddress, type: :model do
       it 'userが紐付いていないと保存できないこと' do
         @order_shopping_address.user_id = nil
         @order_shopping_address.valid?
-        expect(@order_shopping_address.errors.full_messages).to include("Userを入力してください")
+        expect(@order_shopping_address.errors.full_messages).to include('Userを入力してください')
       end
       it 'itemが紐付いていないと保存できないこと' do
         @order_shopping_address.item_id = nil
         @order_shopping_address.valid?
-        expect(@order_shopping_address.errors.full_messages).to include("Itemを入力してください")
+        expect(@order_shopping_address.errors.full_messages).to include('Itemを入力してください')
       end
     end
   end

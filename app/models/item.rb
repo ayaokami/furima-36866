@@ -17,7 +17,7 @@ class Item < ApplicationRecord
     validates :item_description
   end
   # 以下：アクティブハッシュのバリデーション（{ id: 1, name: '--' }以外のときに保存できる）
-  with_options presence: true, numericality: { other_than: 1, message: "を入力してください" } do
+  with_options presence: true, numericality: { other_than: 1, message: 'を入力してください' } do
     validates :category_id
     validates :condition_id
     validates :shipping_charges_id
